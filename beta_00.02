@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="theme-color" content="#fdb800">
+    <meta name="author" content="Azuriom">
+        <meta property="og:title" content="Vote">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://seasky-mc.fr/vote">
+    <meta property="og:image" content="https://seasky-mc.fr/storage/img/icone.png">
+    <meta property="og:description" content="">
+    <meta property="og:site_name" content="SeaSky">
+        <meta name="keywords" content="seasky,skyblock,oneblock">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="b0MNFejepRKDeWwWHiZtPCn031Q4D6htNWqXTjqP">
+
+    <title>Vote | SeaSky</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://seasky-mc.fr/storage/img/icone.png">
+
+    <!-- Scripts -->
+    <script src="https://seasky-mc.fr/assets/vendor/bootstrap/js/bootstrap.bundle.min.js?v1.1.4" defer></script>
+    <script src="https://seasky-mc.fr/assets/vendor/axios/axios.min.js?v1.1.4" defer></script>
+    <script src="https://seasky-mc.fr/assets/js/script.js?v1.1.4" defer></script>
+    <script src="https://seasky-mc.fr/assets/themes/pirate/js/particles.min.js?v1.1.4" defer></script>
+    <script src="https://seasky-mc.fr/assets/themes/pirate/js/particles-init.js?v1.1.4" defer></script>
+    <script src="https://seasky-mc.fr/assets/themes/pirate/js/clipboard.js?v1.1.4" defer></script>
+
+    <!-- Page level scripts -->
+                <script src="https://ipv6-adapter.com/api/v1/api.js" async defer></script>
+    
+    <script src="https://seasky-mc.fr/assets/plugins/vote/js/vote.js?v1.1.4" defer></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.bunny.net/css?family=Raleway:300,400,600,800&display=swap" rel="stylesheet">
+    <link href="https://seasky-mc.fr/assets/vendor/bootstrap-icons/bootstrap-icons.css?v1.1.4" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="https://seasky-mc.fr/assets/vendor/bootstrap/css/bootstrap.min.css?v1.1.4" rel="stylesheet">
+    <link href="https://seasky-mc.fr/assets/css/base.css?v1.1.4" rel="stylesheet">
+    <link href="https://seasky-mc.fr/assets/themes/pirate/css/style.css?v1.1.4" rel="stylesheet">
+        <style>
+        #vote-card .spinner-parent {
+            display: none;
+        }
+
+        #vote-card.voting .spinner-parent {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(70, 70, 70, 0.6);
+            z-index: 10;
+        }
+    </style>
+    <style>
+    :root,
+    [data-bs-theme=light] {
+        --bs-primary: #fdb800;
+        --bs-primary-rgb: 253, 184, 0;
+        --bs-primary-text-emphasis: #654a00;
+        --bs-primary-bg-subtle: #fff1cc;
+        --bs-primary-border-subtle: #fee399;
+        --bs-link-hover-color: #ca9300;
+        --bs-link-hover-color-rgb: 202, 147, 0;
+
+        --bs-primary-color-contrast: #000;
+        --bs-btn-primary-hover-bg: #d79c00;
+        --bs-btn-primary-active-bg: #d79c00;
+        --bs-btn-primary-focus-shadow-rgb: 215, 156, 0;
+    }
+
+    [data-bs-theme=dark] {
+        --bs-primary-text-emphasis: #986e00;
+        --bs-primary-bg-subtle: #332500;
+        --bs-primary-border-subtle: #fed466;
+
+        --bs-link-color: #fed466;
+        --bs-link-hover-color: #fdc633;
+        --bs-link-color-rgb: 254, 212, 102;
+        --bs-link-hover-color-rgb: 253, 198, 51;
+    }
+</style>
+    <style>
+        :root {
+            --background-url: url('https://seasky-mc.fr/storage/img/t.webp')
+        }
+    </style>
+</head>
+
+<body data-bs-theme="dark">
+    <header class="header overflow-hidden">
+        <nav class="navbar navbar-expand-md z-3 pt-3">
+    <div class="container">
+        <a class="navbar-brand" href="https://seasky-mc.fr">
+                            <img src="https://seasky-mc.fr/storage/img/logo.png" alt="Logo" width="50">
+                    </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Afficher/Masquer la navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbar">
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav mx-auto navbar-main-nav">
+                                                            <li class="nav-item">
+                            <a class="nav-link " href="https://seasky-mc.fr" >
+                                <i class="bi bi-house"></i> Accueil
+                            </a>
+                        </li>
+                                                                                <li class="nav-item">
+                            <a class="nav-link " href="https://seasky-mc.fr/shop" >
+                                <i class="bi bi-shop"></i> Boutique
+                            </a>
+                        </li>
+                                                                                <li class="nav-item">
+                            <a class="nav-link  active " href="https://seasky-mc.fr/vote"  target="_blank" rel="noopener noreferrer" >
+                                <i class="bi bi-gift"></i> Vote
+                            </a>
+                        </li>
+                                                                                <li class="nav-item">
+                            <a class="nav-link " href="https://lovrio.gitbook.io/seasky-wiki/"  target="_blank" rel="noopener noreferrer" >
+                                <i class="bi bi-info-circle"></i> Wiki
+                            </a>
+                        </li>
+                                                </ul>
+
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ml-auto">
+
+                <!-- Authentication Links -->
+                                    <li class="nav-item">
+                        <a class="nav-link" href="https://seasky-mc.fr/user/login">
+                            Connexion
+                        </a>
+                    </li>
+
+                                            <li class="nav-item">
+                            <a class="nav-link" href="https://seasky-mc.fr/user/register">
+                                Inscription
+                            </a>
+                        </li>
+                                                </ul>
+        </div>
+    </div>
+</nav>
+
+        <div class="d-flex justify-content-center pt-3 pb-5">
+            <div class="position-relative header-logo">
+                <img src="https://seasky-mc.fr/storage/img/logo.png" class="img-fluid d-block mx-auto logo" alt="SeaSky">
+            </div>
+        </div>
+
+        <div class="header-separator">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 175.2" class="svg-1" fill="#1d6fa6">
+        <path d="M0-1.7l64,8.5c64,8.5,192,25.4,320,28.2c128,2.7,256-8.4,384-5.7c128,2.8,256,19.8,384,18.4
+                    c128-1.5,256-21.1,384-28.2c128-7.2,256-1.3,320,1.4l64,2.8l10.1,149.8H-10.1L0-1.7z"/>
+        <path opacity="0.66" d="M0,7.7L64,12c64,4.2,192,12.7,320,12.7s256-8.5,384-7.1c128,1.5,256,12.6,384,11.3
+                    c128-1.3,256-15.6,384-21.2c128-5.6,256-2.9,320-1.4l64,1.4v52.7L0,58.5L0,7.7z"/>
+    </svg>
+
+    <img src="https://seasky-mc.fr/assets/themes/pirate/svg/boat.svg?v1.1.4" class="boat d-md-block d-none" alt="Boat">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 175.2" class="svg-2" fill="#1d5b90">
+        <path d="M0-1.7l64,8.5c64,8.5,192,25.4,320,28.2c128,2.7,256-8.4,384-5.7c128,2.8,256,19.8,384,18.4
+                    c128-1.5,256-21.1,384-28.2c128-7.2,256-1.3,320,1.4l64,2.8l10.1,149.8H-10.1L0-1.7z"/>
+        <path opacity="0.66" d="M0,7.7L64,12c64,4.2,192,12.7,320,12.7s256-8.5,384-7.1c128,1.5,256,12.6,384,11.3
+                    c128-1.3,256-15.6,384-21.2c128-5.6,256-2.9,320-1.4l64,1.4v52.7L0,58.5L0,7.7z"/>
+    </svg>
+</div>
+    </header>
+
+    <main class="content">
+        <div class="container">
+            <div id="status-message"></div>
+
+                <h1>Voter</h1>
+
+    <div class="card mb-4">
+        <div class="card-body text-center position-relative" id="vote-card">
+            <div class="spinner-parent h-100">
+                <div class="spinner-border text-white" role="status"></div>
+            </div>
+
+            <div class="" data-vote-step="1">
+                <form class="row justify-content-center" action="https://seasky-mc.fr/vote/user" id="voteNameForm">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="mb-3">
+                            <input type="text" id="stepNameInput" name="name" class="form-control"
+                                   value=""
+                                   placeholder="Nom" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            Continuer
+                            <span class="d-none spinner-border spinner-border-sm load-spinner" role="status"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class=" d-none  h-100" data-vote-step="2">
+                                    <a class="btn btn-primary" href="https://serveur-prive.net/minecraft/seasky/vote" target="_blank" rel="noopener noreferrer"
+                       data-vote-id="1"
+                       data-vote-url="https://seasky-mc.fr/vote/site/1"
+                       >
+                        <span class="badge bg-secondary text-white vote-timer"></span> Serveur Privé
+                    </a>
+                                    <a class="btn btn-primary" href="https://www.liste-serveurs.fr/server-seasky-1-20-1.758/vote" target="_blank" rel="noopener noreferrer"
+                       data-vote-id="2"
+                       data-vote-url="https://seasky-mc.fr/vote/site/2"
+                       >
+                        <span class="badge bg-secondary text-white vote-timer"></span> liste serveurs
+                    </a>
+                                    <a class="btn btn-primary" href="https://www.liste-serveurs-minecraft.org/serveur-minecraft/seasky-skyblock-mmo-survie-1-20-x/" target="_blank" rel="noopener noreferrer"
+                       data-vote-id="3"
+                       data-vote-url="https://seasky-mc.fr/vote/site/3"
+                       >
+                        <span class="badge bg-secondary text-white vote-timer"></span> liste serveurs.org
+                    </a>
+                            </div>
+
+            <div class="d-none" data-vote-step="3">
+                <p id="vote-result"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">
+                Classement
+            </h2>
+
+            <table class="table mb-0">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Votes</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                                    <tr>
+                        <th scope="row">#1</th>
+                        <td>BrutalityFox</td>
+                        <td>343</td>
+                    </tr>
+                                    <tr>
+                        <th scope="row">#2</th>
+                        <td>PanzaniAuCacao</td>
+                        <td>301</td>
+                    </tr>
+                                    <tr>
+                        <th scope="row">#3</th>
+                        <td>los_poulpos</td>
+                        <td>270</td>
+                    </tr>
+                                    <tr>
+                        <th scope="row">#4</th>
+                        <td>ZwueRL</td>
+                        <td>215</td>
+                    </tr>
+                                    <tr>
+                        <th scope="row">#5</th>
+                        <td>misterkyllian</td>
+                        <td>199</td>
+                    </tr>
+                                    <tr>
+                        <th scope="row">#6</th>
+                        <td>Flyender</td>
+                        <td>176</td>
+                    </tr>
+                                    <tr>
+                        <th scope="row">#7</th>
+                        <td>rikashimi</td>
+                        <td>166</td>
+                    </tr>
+                                    <tr>
+                        <th scope="row">#8</th>
+                        <td>MatMouse2410</td>
+                        <td>163</td>
+                    </tr>
+                                    <tr>
+                        <th scope="row">#9</th>
+                        <td>Lindorei</td>
+                        <td>144</td>
+                    </tr>
+                                    <tr>
+                        <th scope="row">#10</th>
+                        <td>Infinity_MP_13</td>
+                        <td>138</td>
+                    </tr>
+                
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+            <div class="card mt-4">
+            <div class="card-body">
+                <h2 class="card-title">
+                    Récompenses
+                </h2>
+
+                <table class="table mb-0">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Chances</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                                            <tr>
+                            <th scope="row">
+                                                                    <img src="https://seasky-mc.fr/storage/rewards/rF7fM9XU0AEI8BilvAtful1RRmihfw2bZ1DVfBeu.webp" alt="2 Clé Votes" width="45">
+                                                                2 Clé Votes
+                            </th>
+                            <td>100.00 %</td>
+                        </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+        </div>
+
+        <div id="particles-js"></div>
+    </main>
+
+<footer>
+    <div class="bg-body py-5">
+    <div class="container">
+        <div class="row gy-3">
+            <div class="col-md-4 d-flex align-items-center">
+                <div class="text-center">
+                    <h4 class="text-uppercase font-weight-bold">
+                        Rejoignez notre serveur !
+                    </h4>
+                    <p>Une aventure qui a débuté avec une petite communauté de passionnés et qui est devenue un monde vibrant peuplé de créateurs, d&#039;explorateurs et de combattants. Rejoignez-nous et devenez partie intégrante de notre saga sans cesse en expansion.</p>
+                </div>
+            </div>
+            <div class="col-md-4 d-md-block d-none">
+                <img class="footer-logo d-block mx-auto" src="https://seasky-mc.fr/storage/img/logo.png" alt="SeaSky">
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <h4 class="text-uppercase font-weight-bold">
+                        Rejoignez-nous sur Discord !
+                    </h4>
+                    <p>Bienvenue sur SeaSky, le royaume céleste de l&#039;aventure maritime ! Si vous avez des questions, besoin d&#039;aide, ou simplement envie de partager vos exploits, rejoignez notre communauté dynamique sur Discord.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="copyright py-3">
+    <div class="container">
+        <div class="row gy-3 mt-1">
+            <div class="col-md-3 d-md-flex justify-content-between text-uppercase">
+                                    <a class="me-2 d-inline-block" href="https://seasky-mc.fr/cgv-cgu">CGV/CGU</a>
+                            </div>
+            <div class="col-md-6 text-center">
+                <p class="mb-0">Copyright © 2023 SeaSky - Tous droits réservés.</p>
+                <small>Propulsé par <a href="https://azuriom.com" target="_blank" rel="noopener noreferrer">Azuriom</a>. Thème réalisé par >JustZak & Sloyni.</small>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center justify-content-md-end">
+                <div class="list-inline">
+                                            <a href="https://discord.gg/seasky" class="list-inline-item" target="_blank" rel="noreferrer noopener" data-bs-toggle="tooltip" title="Discord">
+                            <i class="bi bi-discord fs-2"></i>
+                        </a>
+                                            <a href="https://www.tiktok.com/@seaskymc" class="list-inline-item" target="_blank" rel="noreferrer noopener" data-bs-toggle="tooltip" title="TikTok">
+                            <i class="bi bi-tiktok fs-2"></i>
+                        </a>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</footer>
+
+
+</body>
+</html>
